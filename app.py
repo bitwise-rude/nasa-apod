@@ -5,13 +5,14 @@ from PIL import Image
 from io import BytesIO
 from rich.console import Console
 from rich.text import Text
-
+from rich.panel import Panel
+import webbrowser 
 # Loading the API key, you can paste the key here
 load_dotenv()
 api_key = os.getenv("API_KEY")
 
 # some contants
-width = 80
+width = 40
 console = Console()
 
 
@@ -44,3 +45,9 @@ ascii_str = "".join(chars[pixel // 25] for pixel in pixels)
 # displaying the ascii art
 for i in range(0, len(ascii_str), width):
     print(ascii_str[i:i+width])
+console.print(Text(title,style="bold magenta on white"))
+console.print(Panel(date))
+print(url)
+
+if input(">>") == 'show':
+    webbrowser.open(url)
